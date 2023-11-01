@@ -1,0 +1,87 @@
+.Forgot-Background {
+  .Forgot-Page {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h2 {
+      text-align: center;
+      color: $theme-color;
+      margin-bottom: 3rem;
+      font-weight: bold;
+    }
+
+    .Forgot {
+      width: 45%; // Make it full width on small screens
+
+      .login-form-container {
+        background-color: #f3f3f3;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem; // Adjust padding for smaller screens
+        text-align: left;
+
+        .login-register-form {
+          form {
+            input {
+              background-color: transparent;
+              border: 1px solid #ebebeb;
+              color: #333;
+              font-size: 0.9rem;
+              height: 2.7rem;
+              margin-bottom: 1rem;
+              padding: 0 1rem;
+              width: 94%;
+            }
+
+            .button-box {
+              .login-toggle-btn {
+                padding: 1rem 0 1.5rem; // Adjust padding for smaller screens
+
+                label {
+                  color: #242424;
+                  font-size: 15px;
+                  font-weight: 400;
+                }
+
+                a {
+                  color: #242424;
+                  float: right;
+                  font-size: 15px;
+
+                  &:hover {
+                    color: $theme-color;
+                  }
+                }
+              }
+
+              button {
+                background-color: #f2f2f2;
+                border: none;
+                color: #333;
+                cursor: pointer;
+                font-size: 0.8rem;
+                font-weight: 500;
+                line-height: 1;
+                padding: 1rem 2rem; // Adjust padding for smaller screens
+                text-transform: uppercase;
+
+                &:hover {
+                  background-color: $theme-color;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        & {
+          width: 100%; // Restore original width for larger screens
+        }
+      }
+    }
+  }
+}
