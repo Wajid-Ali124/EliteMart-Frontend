@@ -15,7 +15,7 @@ const initialState = {
   orderNotes: "",
 };
 
-const Form = () => {
+const Form = ({ ProductDetail }) => {
   const [purchase, setPurchase] = useState(initialState);
   const { firstName, lastName, company, streetAddress, city, province, postCode, phone, email, orderNotes } = purchase;
 
@@ -29,6 +29,7 @@ const Form = () => {
     console.log(purchase);
     toast.success("Order Placed SuccessFully");
     setPurchase(initialState);
+    ProductDetail();
   };
 
   return (
