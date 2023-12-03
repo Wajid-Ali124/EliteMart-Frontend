@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDiscountPrice } from "../../helpers/product";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import Form from "../../components/checkout/Form";
+import { deleteAllFromCart } from "../../store/slices/cart-slice";
 
 const Checkout = () => {
   let cartTotalPrice = 0;
@@ -13,6 +14,18 @@ const Checkout = () => {
   let { pathname } = useLocation();
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  let items = [];
+
+  const ProductDetail = () => {
+    dispatch(deleteAllFromCart());
+    console.log(items);
+    let total =
+      cartTotalPrice > 199
+        ? currency.currencySymbol + cartTotalPrice.toFixed(2)
+        : currency.currencySymbol + (cartTotalPrice + 50).toFixed(2);
+    console.log("Total Price to Pay: " + total);
+  };
 
   return (
     <Fragment>
@@ -29,7 +42,7 @@ const Checkout = () => {
           <div className="container">
             {cartItems && cartItems.length >= 1 ? (
               <div className="row">
-                <Form />
+                <Form ProductDetail={ProductDetail} />
 
                 <div className="col-lg-5">
                   <div className="your-order-area">
@@ -48,6 +61,7 @@ const Checkout = () => {
                               const discountedPrice = getDiscountPrice(cartItem.price, cartItem.discount);
                               const finalProductPrice = (cartItem.price * currency.currencyRate).toFixed(2);
                               const finalDiscountedPrice = (discountedPrice * currency.currencyRate).toFixed(2);
+                              items.push(cartItem);
 
                               discountedPrice != null
                                 ? (cartTotalPrice += finalDiscountedPrice * cartItem.quantity)
