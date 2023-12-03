@@ -8,9 +8,9 @@ const GoogleMap = ({ lat, lng, zoom, options }) => {
         width="100%"
         height="100%"
         style={{ border: 0 }}
-        allowfullscreen=""
+        allowFullScreen={true}
         loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
+        referrerPolicy="no-referrer-when-downgrade"
         title="Khairpur Location Map" // Place the title attribute here
       ></iframe>
     </div>
