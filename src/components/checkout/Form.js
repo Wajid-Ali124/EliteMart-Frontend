@@ -26,6 +26,12 @@ const Form = ({ ProductDetail }) => {
 
   const placeOrder = (e) => {
     e.preventDefault();
+    //Validations
+    if (!firstName || !email || !streetAddress || !city || !postCode || !phone) {
+      toast.error("Please Fill All required* Feilds");
+      return;
+    }
+
     console.log(purchase);
     toast.success("Order Placed SuccessFully");
     setPurchase(initialState);
@@ -40,7 +46,7 @@ const Form = ({ ProductDetail }) => {
           <div className="row">
             <div className="col-lg-6 col-md-6">
               <div className="billing-info mb-20">
-                <label>First Name</label>
+                <label>First Name*</label>
                 <input type="text" name="firstName" value={firstName} onChange={handleInputChange} />
               </div>
             </div>
@@ -59,7 +65,7 @@ const Form = ({ ProductDetail }) => {
 
             <div className="col-lg-12">
               <div className="billing-info mb-20">
-                <label>Street Address</label>
+                <label>Street Address*</label>
                 <input
                   className="billing-address"
                   name="streetAddress"
@@ -72,31 +78,31 @@ const Form = ({ ProductDetail }) => {
             </div>
             <div className="col-lg-12">
               <div className="billing-info mb-20">
-                <label>Town / City</label>
+                <label>Town / City*</label>
                 <input type="text" name="city" value={city} onChange={handleInputChange} />
               </div>
             </div>
             <div className="col-lg-6 col-md-6">
               <div className="billing-info mb-20">
-                <label>Province / State</label>
+                <label>Province / State*</label>
                 <input type="text" name="province" value={province} onChange={handleInputChange} />
               </div>
             </div>
             <div className="col-lg-6 col-md-6">
               <div className="billing-info mb-20">
-                <label>Postcode</label>
+                <label>Postcode*</label>
                 <input type="text" name="postCode" value={postCode} onChange={handleInputChange} />
               </div>
             </div>
             <div className="col-lg-6 col-md-6">
               <div className="billing-info mb-20">
-                <label>Phone</label>
+                <label>Phone*</label>
                 <input type="text" name="phone" value={phone} onChange={handleInputChange} />
               </div>
             </div>
             <div className="col-lg-6 col-md-6">
               <div className="billing-info mb-20">
-                <label>Email Address</label>
+                <label>Email*</label>
                 <input type="email" name="email" value={email} onChange={handleInputChange} />
               </div>
             </div>
