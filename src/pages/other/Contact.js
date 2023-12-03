@@ -25,6 +25,13 @@ const Contact = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
+
+    //Validations
+    if (!name || !email || !subject || !message) {
+      toast.error("Please Fill All the Feilds");
+      return;
+    }
+
     console.log(contact);
     setContact(initialState);
     toast.success("Message Sent");
