@@ -1,12 +1,34 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import GoogleMap from "../../components/google-map";
+import { toast } from "react-toastify";
+
+const initialState = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 const Contact = () => {
   let { pathname } = useLocation();
+  const [contact, setContact] = useState(initialState);
+  const { name, email, subject, message } = contact;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setContact({ ...contact, [name]: value });
+  };
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    console.log(contact);
+    setContact(initialState);
+    toast.success("Message Sent");
+  };
 
   return (
     <Fragment>
@@ -95,19 +117,36 @@ const Contact = () => {
                   <div className="contact-title mb-30">
                     <h2>Get In Touch</h2>
                   </div>
-                  <form className="contact-form-style">
+                  <form className="contact-form-style" onSubmit={sendMessage}>
                     <div className="row">
                       <div className="col-lg-6">
-                        <input name="name" placeholder="Name*" type="text" />
+                        <input name="name" placeholder="Name*" value={name} onChange={handleInputChange} type="text" />
                       </div>
                       <div className="col-lg-6">
-                        <input name="email" placeholder="Email*" type="email" />
+                        <input
+                          name="email"
+                          placeholder="Email*"
+                          value={email}
+                          onChange={handleInputChange}
+                          type="email"
+                        />
                       </div>
                       <div className="col-lg-12">
-                        <input name="subject" placeholder="Subject*" type="text" />
+                        <input
+                          name="subject"
+                          placeholder="Subject*"
+                          value={subject}
+                          onChange={handleInputChange}
+                          type="text"
+                        />
                       </div>
                       <div className="col-lg-12">
-                        <textarea name="message" placeholder="Your Message*" defaultValue={""} />
+                        <textarea
+                          name="message"
+                          placeholder="Your Message*"
+                          value={message}
+                          onChange={handleInputChange}
+                        />
                         <button className="submit" type="submit">
                           SEND
                         </button>
